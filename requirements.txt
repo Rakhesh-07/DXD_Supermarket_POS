@@ -1,0 +1,6 @@
+mysql-connector-python
+Pillow
+playsound==1.2.2
+pymsgbox
+customtkinter
+matplotlib

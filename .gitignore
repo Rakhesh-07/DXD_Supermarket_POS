@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+project.db
+receipts/
+*.dat
+*.txt
+!requirements.txt
+!readme.md
