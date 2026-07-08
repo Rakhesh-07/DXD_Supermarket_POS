@@ -28,12 +28,13 @@ class ManageStaffFrame(ctk.CTkFrame):
         
         # Table Header
         tbl_hdr = ctk.CTkFrame(self.left_frame, fg_color="#1a1a1a")
-        tbl_hdr.grid(row=1, column=0, padx=15, pady=(0, 5), sticky="ew")
+        # Offset right padding to account for the scrollbar width on the list below
+        tbl_hdr.grid(row=1, column=0, padx=(15, 32), pady=(0, 5), sticky="ew")
         tbl_hdr.grid_columnconfigure((0,1,2), weight=1)
         
         cols = ["Username", "Full Name", "Role"]
         for c_idx, col_name in enumerate(cols):
-            ctk.CTkLabel(tbl_hdr, text=col_name, font=("Arial", 13, "bold"), text_color="#eaab06").grid(row=0, column=c_idx, pady=5)
+            ctk.CTkLabel(tbl_hdr, text=col_name, font=("Arial", 13, "bold"), text_color="#eaab06", anchor="center").grid(row=0, column=c_idx, pady=5, sticky="ew")
             
         # Scrollable list
         self.staff_scroll = ctk.CTkScrollableFrame(self.left_frame, fg_color="transparent")
@@ -117,9 +118,9 @@ class ManageStaffFrame(ctk.CTkFrame):
                 )
                 btn.place(x=0, y=0, relwidth=1, relheight=1)
                 
-                ctk.CTkLabel(row_frame, text=username, font=("Arial", 12)).grid(row=0, column=0, pady=5)
-                ctk.CTkLabel(row_frame, text=name, font=("Arial", 12)).grid(row=0, column=1, pady=5)
-                ctk.CTkLabel(row_frame, text=role, font=("Arial", 12)).grid(row=0, column=2, pady=5)
+                ctk.CTkLabel(row_frame, text=username, font=("Arial", 12), anchor="center").grid(row=0, column=0, pady=5, sticky="ew")
+                ctk.CTkLabel(row_frame, text=name, font=("Arial", 12), anchor="center").grid(row=0, column=1, pady=5, sticky="ew")
+                ctk.CTkLabel(row_frame, text=role, font=("Arial", 12), anchor="center").grid(row=0, column=2, pady=5, sticky="ew")
                 
         except Exception as e:
             print(f"Error loading staff: {e}")
