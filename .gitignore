@@ -8,3 +8,5 @@ receipts/
 *.txt
 !requirements.txt
 !readme.md
+interview_prep.md
+*.exe
