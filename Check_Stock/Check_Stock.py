@@ -131,7 +131,7 @@ class CheckStockFrame(ctk.CTkFrame):
                 
                 # Clicking a row in manager mode auto-populates fields
                 if pa.emp_role == "Manager":
-                    btn = ctk.CTkButton(row_frame, text="", fg_color="transparent", hover_color=("#eaab06", "#3a3a3a"), height=30, command=lambda c=code, n=name, p=price, s=stock: self.select_item(c, n, p, s))
+                    btn = ctk.CTkButton(row_frame, text=" ", fg_color="transparent", hover_color=("#eaab06", "#3a3a3a"), height=30, command=lambda c=code, n=name, p=price, s=stock: self.select_item(c, n, p, s))
                     btn.place(x=0, y=0, relwidth=1, relheight=1)
                     
                 ctk.CTkLabel(row_frame, text=str(code), font=("Arial", 13)).grid(row=0, column=0, pady=5)

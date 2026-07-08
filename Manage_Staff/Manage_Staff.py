@@ -108,9 +108,10 @@ class ManageStaffFrame(ctk.CTkFrame):
                 
                 username, name, role = row
                 
+                # Clicking a row selects it
                 btn = ctk.CTkButton(
                     row_frame,
-                    text="",
+                    text=" ",
                     fg_color="transparent",
                     hover_color=("#eaab06", "#3a3a3a"),
                     height=30,
