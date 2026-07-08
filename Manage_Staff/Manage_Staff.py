@@ -30,11 +30,15 @@ class ManageStaffFrame(ctk.CTkFrame):
         tbl_hdr = ctk.CTkFrame(self.left_frame, fg_color="#1a1a1a")
         # Offset right padding to account for the scrollbar width on the list below
         tbl_hdr.grid(row=1, column=0, padx=(15, 32), pady=(0, 5), sticky="ew")
-        tbl_hdr.grid_columnconfigure((0,1,2), weight=1)
+        tbl_hdr.grid_columnconfigure((0,1,2), weight=3)
+        tbl_hdr.grid_columnconfigure(3, weight=1)
         
         cols = ["Username", "Full Name", "Role"]
         for c_idx, col_name in enumerate(cols):
             ctk.CTkLabel(tbl_hdr, text=col_name, font=("Arial", 13, "bold"), text_color="#eaab06", anchor="center").grid(row=0, column=c_idx, pady=5, sticky="ew")
+            
+        # Header for the select button column
+        ctk.CTkLabel(tbl_hdr, text="Actions", font=("Arial", 13, "bold"), text_color="#eaab06", anchor="center").grid(row=0, column=3, pady=5, sticky="ew")
             
         # Scrollable list
         self.staff_scroll = ctk.CTkScrollableFrame(self.left_frame, fg_color="transparent")
@@ -104,24 +108,28 @@ class ManageStaffFrame(ctk.CTkFrame):
             for row in users:
                 row_frame = ctk.CTkFrame(self.staff_scroll, height=35)
                 row_frame.pack(fill="x", pady=2)
-                row_frame.grid_columnconfigure((0,1,2), weight=1)
+                row_frame.grid_columnconfigure((0,1,2), weight=3)
+                row_frame.grid_columnconfigure(3, weight=1)
                 
                 username, name, role = row
-                
-                # Clicking a row selects it
-                btn = ctk.CTkButton(
-                    row_frame,
-                    text=" ",
-                    fg_color="transparent",
-                    hover_color=("#eaab06", "#3a3a3a"),
-                    height=30,
-                    command=lambda u=username, n=name, r=role: self.select_staff(u, n, r)
-                )
-                btn.place(x=0, y=0, relwidth=1, relheight=1)
                 
                 ctk.CTkLabel(row_frame, text=username, font=("Arial", 12), anchor="center").grid(row=0, column=0, pady=5, sticky="ew")
                 ctk.CTkLabel(row_frame, text=name, font=("Arial", 12), anchor="center").grid(row=0, column=1, pady=5, sticky="ew")
                 ctk.CTkLabel(row_frame, text=role, font=("Arial", 12), anchor="center").grid(row=0, column=2, pady=5, sticky="ew")
+                
+                # Dedicated Select Button
+                sel_btn = ctk.CTkButton(
+                    row_frame,
+                    text="Select",
+                    width=60,
+                    height=22,
+                    fg_color="#eaab06",
+                    text_color="black",
+                    hover_color="#c89205",
+                    font=("Arial", 11, "bold"),
+                    command=lambda u=username, n=name, r=role: self.select_staff(u, n, r)
+                )
+                sel_btn.grid(row=0, column=3, padx=5, pady=5)
                 
         except Exception as e:
             print(f"Error loading staff: {e}")
