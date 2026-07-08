@@ -9,6 +9,7 @@ from Create_Membership.Create_Membership import CreateMembershipFrame
 from Bill_Customer.Bill_Customer import POSFrame
 from Check_Bill.Check_Bill import CheckBillFrame
 from Check_Stock.Check_Stock import CheckStockFrame
+from Manage_Staff.Manage_Staff import ManageStaffFrame
 
 # If manager, we can use matplotlib to draw a dashboard chart
 import matplotlib.pyplot as plt
@@ -73,6 +74,8 @@ class SupermarketApp(ctk.CTk):
             ("Create Membership", "Membership"),
             ("Bill History", "History")
         ]
+        if pa.emp_role == "Manager":
+            nav_items.append(("Manage Staff", "Staff"))
         
         for idx, (label, target) in enumerate(nav_items):
             btn = ctk.CTkButton(
@@ -119,6 +122,8 @@ class SupermarketApp(ctk.CTk):
             frame = CreateMembershipFrame(self.content_container, self)
         elif page_name == "History":
             frame = CheckBillFrame(self.content_container, self)
+        elif page_name == "Staff":
+            frame = ManageStaffFrame(self.content_container, self)
             
         frame.grid(row=0, column=0, sticky="nsew")
         
